@@ -40,21 +40,22 @@ function readFileToArr(fReadName, callback) {
             var to_nickname = '';
             var to_qq_number = '';
             var content = line.substring(line.indexOf('：') + 1, line.length);
-            var to_nickname_pos = line.indexOf('@');
-            if (to_nickname_pos !== -1) {
-                var buffer = line.substring(to_nickname_pos + 1, line.length);
-                var to_qq_pos = buffer.indexOf('(');
-                to_nickname = buffer.substring(0, to_qq_pos);
-                to_qq_number = buffer.substring(to_qq_pos + 1, buffer.indexOf(')'));
-                content = buffer.substring(buffer.indexOf('：') + 1, buffer.length);
-            }
 
             if (content !== 'javascript:void(0)') {
                 n++;
 
+                var to_nickname_pos = line.indexOf('@');
+                if (to_nickname_pos !== -1) {
+                    var buffer = line.substring(to_nickname_pos + 1, line.length);
+                    var to_qq_pos = buffer.indexOf('(');
+                    to_nickname = buffer.substring(0, to_qq_pos);
+                    to_qq_number = buffer.substring(to_qq_pos + 1, buffer.indexOf(')'));
+                }
+
                 // 输出解析后的数据
                 // console.log(n + ' - ' + from_nickname + ' - ' + from_qq_number + ' - ' + to_nickname + ' - ' + to_qq_number + ' - ' + content);
 
+                // 通过PUT请求上传数据
                 var limit = 100000;
                 if (n <= limit) {
                     // 将解析后的数据进行存储，type定义为qq_music
