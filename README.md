@@ -1,2 +1,2 @@
-# elastic
-elastic-search
+# Elastic
+Elastic-search
