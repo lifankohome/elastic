@@ -40,10 +40,11 @@ function readFileToArr(fReadName, callback) {
             var to_nickname = '';
             var to_qq_number = '';
             var content = line.substring(line.indexOf('：') + 1, line.length);
-            if (line.indexOf('@') !== -1) {
-                var buffer = line.substring(line.indexOf('@'), line.length);
+            var to_nickname_pos = line.indexOf('@');
+            if (to_nickname_pos !== -1) {
+                var buffer = line.substring(to_nickname_pos + 1, line.length);
                 var to_qq_pos = buffer.indexOf('(');
-                to_nickname = buffer.substring(1, to_qq_pos);
+                to_nickname = buffer.substring(0, to_qq_pos);
                 to_qq_number = buffer.substring(to_qq_pos + 1, buffer.indexOf(')'));
                 content = buffer.substring(buffer.indexOf('：') + 1, buffer.length);
             }
